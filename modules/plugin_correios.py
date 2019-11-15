@@ -2,6 +2,7 @@
 
 """
 web2py_correios: web2py plugin for price and deadline calculation in post office webservices.
+The purpose of this file is to be independent of any non-native frameworks and libraries.
 
 """
 
@@ -15,7 +16,7 @@ __status__ = 'Development'
 
 import requests
 import xml.etree.ElementTree as ET
-from gluon.storage import Storage
+
 class Frete:
   """docstring for Frete
     This class used by consult price-and-deadlines
@@ -56,18 +57,13 @@ class Frete:
   def find(self):
     """ Consume webservice url and set values ​​in class dynamic attributes """
     # need try??
-    # url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?'
-    # print(url=="".join([self.endpoint, self.resource, self.parameters])) # test
+    
     url = "".join([self.endpoint, self.resource, self.parameters])
     with open('log.txt', 'w') as file: file.write(url)
-    # print(url) # test 
-    # , headers = {'content-type': 'application/xml; charset=utf-8'}
-    r = requests.get(url)
+    r = requests.get(url, headers = {'content-type': 'application/xml; charset=utf-8'})
     r.encoding='utf-8'
-    # print(r.headers)
-    # print(r.text) # test
-    # r.encoding='utf-8'
     
+    print(r.content)    
     root = ET.fromstring(r.content)
 
     for element in root.iter('cServico'):
