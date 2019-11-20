@@ -1,0 +1,7 @@
+{{if int(frete.Erro)>0:}}
+<p>{{=frete.MsgErro}}
+{{else:}}
+<td >SEDEX </td> 
+<td>R$ {{=frete.Valor}}</td>
+<td>A partir de {{=frete.PrazoEntrega}} dia(s) util(eis) </td>
+{{pass}}

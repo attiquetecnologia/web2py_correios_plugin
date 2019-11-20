@@ -1,0 +1,92 @@
+<!-- salvar na sessão -->
+<div class="row">
+	<div class="col-md-12">
+		<form>
+			<div class="input-group">
+				<input class="form-control" type="text" id="cep" name="cep" placeholder="0000-000">
+				<div class="input-group-addon input-group-append">
+					<a class="button btn btn-default" onclick="pesquisacep();ajax('{{=URL('plugin_correios','preco_prazo', vars=request.vars)}}',['cep'], 'resultado');" 
+					href="#" title="CEP" ><i class="fa fa-search"></i></a>
+					<a href="" style="display: none;" class="btn btn-default btn-white">Não sei o CEP</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-12">
+		<p id="endereco" class="text-center text-primary"></p>
+		<table class="d-none">
+			<tr><th>Entrega</th><th>Valor</th><th>Prazo</th></tr>
+			{{if request.vars.frete_gratis:}}
+			<tr class="text-uppercase">
+				<td>Retirar na loja <span class="badge badge-warning">Recomendado</span></td>
+				<td>Frete grátis</td>
+				<td>A partir de {{=request.vars.prazo_frete_gratis}} dia(s) ute(is)</td>
+			</tr>
+			{{pass}}
+			<tr class="text-uppercase" id="resultado">
+				
+			</tr>
+			<tr ><td colspan="3"><p style="font-size: 8pt;" class="text-info">* O prazo de entrega inicia-se no 1º dia útil após a confirmação do pagamento. Informações referentes apenas para 01 unidade deste item</p></td>
+			</tr>
+		</table>
+		
+	</div>
+</div>
+
+<!-- Adicionando Javascript -->
+<script type="text/javascript" >
+    
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('endereco').innerText=(conteudo.logradouro+' - '+conteudo.bairro+' - '+conteudo.localidade+' - '+conteudo.uf);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+    function pesquisacep() {
+
+		var valor = document.getElementById('cep').value;
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+		
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+			
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+				
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('endereco').innerText="...";
+                if ( document.getElementsByClassName('d-none').length>0 ) {
+				    document.getElementsByClassName('d-none')[0].className="d-block table table-striped table-hovered";
+                }
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+</script>

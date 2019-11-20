@@ -10,7 +10,7 @@ __author__ = 'Rodrigo Attique'
 __email__ = 'attiquetecnologia@gmail.com'
 __copyright__ = 'Copyright(c) 2019-2020 Rodrigo Attique '
 __license__ = 'LGPLv3'
-__version__ = '0.1'
+__version__ = '0.1.1'
 # possible options: Prototype, Development, Production
 __status__ = 'Development'
 
@@ -63,7 +63,6 @@ class Frete:
     r = requests.get(url, headers = {'content-type': 'application/xml; charset=utf-8'})
     r.encoding='utf-8'
     
-    print(r.content)    
     root = ET.fromstring(r.content)
 
     for element in root.iter('cServico'):

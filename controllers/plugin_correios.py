@@ -1,6 +1,26 @@
 #-*- coding: utf-8 -*-
+__author__ = 'Rodrigo Attique'
+__email__ = 'attiquetecnologia@gmail.com'
+__copyright__ = 'Copyright(c) 2019-2020 Rodrigo Attique '
+__license__ = 'LGPLv3'
+__version__ = '0.1.2'
+# possible options:Prototype, Development, Production
+__status__ = 'Development'
 
-def consume():
+
+def index():
+	"""
+	 Use:
+	 LOAD('plugin_correios','index', vars=dict(cep_origem=response.company_cep, peso=product.pkg_weight/1000, comprimento=product.pkg_length, altura=product.pkg_height, largura=product.pkg_height, frete_gratis=product.pickup_at_store, prazo_frete_gratis=product.deadline_withdrawn))
+	"""
+	
+	return dict()
+
+def preco_prazo():
+	"""
+	Encontra o preço e o prazo de entrega na api dos correios
+	"""
+
 	from plugin_correios import Frete
 	from gluon.storage import Storage
 	if not request.vars:
@@ -12,7 +32,7 @@ def consume():
 	    'nCdEmpresa':'' # not necessary
 	    ,'sDsSenha':'' # not necessary
 	    ,'sCepOrigem': request.vars.cep_origem # external
-	    ,'sCepDestino': request.vars.cep_destino # external
+	    ,'sCepDestino': request.vars.cep # external
 	    ,'nVlPeso': request.vars.peso or 1 # external
 	    ,'nCdFormato': request.vars.formato or 1 # 1 package, 2 envelope
 	    ,'nVlComprimento': request.vars.comprimento # external
