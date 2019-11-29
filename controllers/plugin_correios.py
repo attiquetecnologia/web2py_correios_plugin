@@ -1,12 +1,12 @@
 #-*- coding: utf-8 -*-
-__author__ = 'Rodrigo Attique'
-__email__ = 'attiquetecnologia@gmail.com'
-__copyright__ = 'Copyright(c) 2019-2020 Rodrigo Attique '
-__license__ = 'LGPLv3'
-__version__ = '0.1.2'
-# possible options:Prototype, Development, Production
-__status__ = 'Development'
 
+# NOTE: é preciso disponibilizar o cep de destino na sessão para que seja possível consultar novamente
+# sem a necessidade usar a interface.???
+
+# Outra objservação o usuário precisa selecionar no carrinho a forma de frete que deseja, se
+# retirar na loja ou via correios.
+# Ele deve ter a flexibilidade de selecionar formas de entrega diferentes para o mesmo pedido?
+# Ou deve fazer isto em pedidos diferentes.
 
 def index():
 	"""

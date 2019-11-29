@@ -4,13 +4,15 @@
 web2py_correios: web2py plugin for price and deadline calculation in post office webservices.
 The purpose of this file is to be independent of any non-native frameworks and libraries.
 
+web2py_correios: plugin web2py para calculo de preço e prazo usando o webservice dos correios.
+O objetivo deste arquivo em módules é ser independente de bibliotecas não nativas do python.
 """
 
 __author__ = 'Rodrigo Attique'
 __email__ = 'attiquetecnologia@gmail.com'
 __copyright__ = 'Copyright(c) 2019-2020 Rodrigo Attique '
-__license__ = 'LGPLv3'
-__version__ = '0.1.1'
+__license__ = 'MIT'
+__version__ = '0.1.3'
 # possible options: Prototype, Development, Production
 __status__ = 'Development'
 
@@ -20,9 +22,11 @@ import xml.etree.ElementTree as ET
 class Frete:
   """docstring for Frete
     This class used by consult price-and-deadlines
+    Classe responsável por consultar preço e prazo
   """
   # http://ws.correios.com.br
   # The url above return de following xml structure
+  # Esta url retorna a seguinte estrutura xml
   """
   <Servicos>
     <cServico>
@@ -48,6 +52,7 @@ class Frete:
   def __init__(self, **parameters):
     """
       **parameters : dictionary of url parameters specified in the post office manual price-and-deadlines http://www.correios.com.br/a-a-z/pdf/calculador-remoto-de-precos-e-prazos/manual-de-implementacao-do-calculo-remoto-de-precos-e-prazos
+      **parameters : dicionário contendo as variáveis para post em url
     """
 
     for k, v in parameters.items():
