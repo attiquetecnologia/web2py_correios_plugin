@@ -12,7 +12,8 @@ __author__ = 'Rodrigo Attique'
 __email__ = 'attiquetecnologia@gmail.com'
 __copyright__ = 'Copyright(c) 2019-2020 Rodrigo Attique '
 __license__ = 'MIT'
-__version__ = '0.1.3'
+__version__ = '0.1.4'
+__release_date__ = '24/12/2019'
 # possible options: Prototype, Development, Production
 __status__ = 'Development'
 
@@ -58,6 +59,14 @@ class Frete:
     for k, v in parameters.items():
       # The parameters are compiled to url parameter format
       self.parameters = self.parameters + "%s=%s&" % (k,v)
+    
+    # coloca o cep de origem e destino
+    self.sCepDestino = parameters['sCepDestino']
+    self.sCepOrigem = parameters['sCepOrigem']
+    self.sCepOrigem = parameters['nVlPeso']
+    self.sCepOrigem = parameters['nVlAltura']
+    self.sCepOrigem = parameters['nVlLargura']
+    self.sCepOrigem = parameters['nVlComprimento']
     
   def find(self):
     """ Consume webservice url and set values ​​in class dynamic attributes """
