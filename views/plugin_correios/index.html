@@ -95,7 +95,7 @@
     };
     /*&cep="+$('#cep').val()*/
     function calcular(value){
-        var url = "{{=URL('plugin_correios','preco_prazo', vars=request.vars)}}"; 
+        var url = "{{=URL('plugin_correios', 'preco_prazo', vars=request.vars)}}"; 
         var target = "#resultado";
         $.ajax({
             url: url,
@@ -108,4 +108,5 @@
             alert("error");
         });
     }
+
 </script>

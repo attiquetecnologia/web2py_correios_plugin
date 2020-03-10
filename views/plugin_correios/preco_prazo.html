@@ -2,7 +2,11 @@
 {{if int(frete.Erro)>0:}}
 <p>{{=frete.MsgErro}}</p>
 {{else:}}
-<td >SEDEX </td> 
+<td >Correios </td>
+{{if frete.Valor=="0,00":}} 
+<td><span class="badge badge-warning">Não disponível</span></td>
+{{else:}}
 <td>R$ {{=frete.Valor}}</td>
 <td>A partir de {{=frete.PrazoEntrega}} dia(s) util(eis) </td>
+{{pass}}
 {{pass}}

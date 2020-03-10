@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+﻿#-*- coding: utf-8 -*-
 
 """
 web2py_correios: web2py plugin for price and deadline calculation in post office webservices.
@@ -12,8 +12,8 @@ __author__ = 'Rodrigo Attique'
 __email__ = 'attiquetecnologia@gmail.com'
 __copyright__ = 'Copyright(c) 2019-2020 Rodrigo Attique '
 __license__ = 'MIT'
-__version__ = '0.1.4'
-__release_date__ = '24/12/2019'
+__version__ = '0.1.5'
+__release_date__ = '10/03/2020'
 # possible options: Prototype, Development, Production
 __status__ = 'Development'
 
@@ -89,20 +89,20 @@ if __name__=='__main__':
   parameters = {
     'nCdEmpresa':'' # not necessary
       ,'sDsSenha':'' # not necessary
-      ,'sCepOrigem':'14780028' # external
-      ,'sCepDestino':'13010040' # external
+      ,'sCepOrigem':'14781066' # external
+      ,'sCepDestino':'14780028' # external
       ,'nVlPeso':'1' # external
       ,'nCdFormato':'1' # 1 package, 2 envelope
-      ,'nVlComprimento':'20' # external
-      ,'nVlAltura':'20' # external
-      ,'nVlLargura':'20' # external
+      ,'nVlComprimento':'22' # external
+      ,'nVlAltura':'7' # external
+      ,'nVlLargura':'14' # external
       ,'nVlDiametro':'0' # external
       ,'sCdMaoPropria':'n'
       ,'nVlValorDeclarado':'0' # not necessary
       ,'sCdAvisoRecebimento':'n' # not necessary
-      ,'nCdServico':'04510' # SEDEX, SEDEX10
+      ,'nCdServico':'04014' # 04014 SEDEX a vista, 04510 PAC a vista, 04782 SEDEX12, 04790 SEDEX10, 04804 SEDEX Hoje
       ,'StrRetorno':'xml' # necessary
-      ,'nIndicaCalculo':'3' # what?
+      # ,'nIndicaCalculo':'3' # what?
   }
 
   frete = Frete(**parameters)

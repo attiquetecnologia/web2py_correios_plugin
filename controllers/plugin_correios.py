@@ -51,9 +51,9 @@ def preco_prazo():
 	    ,'sCdMaoPropria':'n'
 	    ,'nVlValorDeclarado':'0' # not necessary
 	    ,'sCdAvisoRecebimento':'n' # not necessary
-	    ,'nCdServico': request.vars.servico or '04014' # SEDEX, SEDEX10
+	    ,'nCdServico': request.vars.servico or '04014' # 04014 SEDEX a vista, 04510 PAC a vista, 04782 SEDEX12, 04790 SEDEX10, 04804 SEDEX Hoje
 	    ,'StrRetorno':'xml' # necessary
-	    ,'nIndicaCalculo':'3' # what?
+	    # ,'nIndicaCalculo':'3' # what?
 	  }
 
 	# 1 - Precisa comparar os dados da sessão com os do cep
@@ -72,5 +72,7 @@ def preco_prazo():
 		session.plugin_correios.frete = Storage(**frete.__dict__)
 	elif v.cep == '':
 		session.plugin_correios.frete = Storage(**{'sCepDestino':'', 'Erro': 0})
+	else:
+		session.plugin_correios.frete = Storage()
 		
 	return dict()
